@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameStateServiceService } from './game-state-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-lifegame';
+  board = this.gameState.board;
+
+  constructor(private gameState: GameStateServiceService){
+    this.gameState.mBoardSubject.subscribe(board => this.board = board);
+
+  }
+
 }
